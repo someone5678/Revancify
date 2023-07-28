@@ -1,8 +1,6 @@
 # Revancify 🛠️
 ### A TUI wrapper for Revanced CLI with amazing features.
 
-[![TelegramChannel](https://img.shields.io/badge/Telegram_Support_Chat-2CA5E0?style=for-the-badge&logo=Telegram&logoColor=FFFFFF)](https://t.me/revancifychat)
-
 ## Termux
 
 <table>
@@ -34,14 +32,14 @@
 2. Open Termux.
 3. Copy and paste this command.
 ```
-curl -sL "https://raw.githubusercontent.com/decipher3114/Revancify/main/install.sh" | bash
+curl -sL "https://raw.githubusercontent.com/someone5678/Revancify/main/install.sh" | bash
 ```
 
 <details>
   <summary>If the above one doesn't work, use this.</summary>
 
   ```
-pkg update -y -o Dpkg::Options::="--force-confnew" && pkg install git -y && git clone --depth=1 https://github.com/decipher3114/Revancify.git && ./Revancify/revancify
+pkg update -y -o Dpkg::Options::="--force-confnew" && pkg install git -y && git clone --depth=1 https://github.com/someone5678/Revancify.git && ./Revancify/revancify
 ```
 </details>
 
@@ -53,3 +51,4 @@ Or use with arguments. Check them with `revancify -h` or `revancify --help`
 # Thanks & Credits
 [Revanced](https://github.com/revanced)
 [Revanced Extended](https://github.com/inotia00)  
+[decipher3114](https://github.com/decipher3114) 
