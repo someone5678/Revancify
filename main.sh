@@ -165,12 +165,11 @@ changeSource() {
 selectApp() {
     [ "$1" == "storage" ] && helpTag=(--help-button --help-label "From Storage") || helpTag=()
     previousAppName="$appName"
-    readarray -t availableApps < <(jq -n -r --argjson appsArray "$appsArray" '$appsArray[] | .index, .appName, .pkgName')
-    appIndex=$("${header[@]}" --begin 2 0 --title '| App Selection Menu |' --item-help --default-item "$appIndex" "${helpTag[@]}" --ok-label "Select" --cancel-label "Back" --menu "Use arrow keys to navigate\nSource: $sourceName" $(($(tput lines) - 3)) -1 15 "${availableApps[@]}" 2>&1 >/dev/tty)
+    appName=$("${header[@]}" --begin 2 0 --title '| App Selection Menu |' --no-items --item-help --default-item "$appName" "${helpTag[@]}" --ok-label "Select" --cancel-label "Back" --menu "Use arrow keys to navigate\nSource: $sourceName" $(($(tput lines) - 3)) -1 15 "${appsList[@]}" 2>&1 >/dev/tty)
     appSelectResult=$?
     case $appSelectResult in
     0)
-        readarray -t appSelectedResult < <(jq -n -r --arg appIndex "$appIndex" --argjson appsArray "$appsArray" '$appsArray[] | select(.index == ($appIndex | tonumber)) | .appName, .pkgName, .developerName, .apkmirrorAppName')
+        readarray -t appSelectedResult < <(jq -n -r --arg appName "$appName" --argjson includedPatches "$includedPatches" '$includedPatches[] | select(.appName == $appName) | .appName, .pkgName, .developerName, .apkmirrorAppName')
         appName="${appSelectedResult[0]}"
         pkgName="${appSelectedResult[1]}"
         developerName="${appSelectedResult[2]}"
@@ -319,7 +318,7 @@ refreshJson() {
     fi
     patchesJson=$(jq '.' "$patchesSource"-patches-*.json)
     includedPatches=$(jq '.' "$storagePath/$source-patches.json" 2>/dev/null || jq -n '[]')
-    appsArray=$(jq -n --argjson includedPatches "$includedPatches" --arg pkgName "$pkgName" '$includedPatches | to_entries | map(select(.value.appName != null)) | to_entries | map({"index": (.key + 1), "appName": (.value.value.appName), "pkgName" :(.value.value.pkgName), "developerName" :(.value.value.developerName), "apkmirrorAppName" :(.value.value.apkmirrorAppName)})')
+    readarray -t appsList < <(jq -n -r --argjson includedPatches "$includedPatches" '$includedPatches[] | if .appName != null then .appName, .pkgName else empty end')
 }
 
 checkTools() {
