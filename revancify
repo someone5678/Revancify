@@ -151,7 +151,7 @@ cd "$DATA" &> /dev/null || exit 1
 
 tput civis
 
-bash "$SRC/main.sh" "$ROOT_ACCESS"
+bash $(case $- in (*x*) printf %s -x ;; esac) "$SRC/main.sh" "$ROOT_ACCESS"
 EXIT_CODE=$?
 
 tput cnorm
