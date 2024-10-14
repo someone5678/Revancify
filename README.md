@@ -4,7 +4,6 @@
 ## Termux
 | Android Version | Download Link|
 | ---- | ----- |
-| Android 8+ | [Termux Monet](https://github.com/Termux-Monet/termux-monet/releases/latest) (Strictly Recommended)
 | Android 4+ | [Termux](https://github.com/termux/termux-app/releases/latest)
 
 # Features
@@ -43,4 +42,4 @@ Or use with arguments. Check them with `revancify -h` or `revancify --help`
 # Thanks & Credits
 [Revanced](https://github.com/revanced)  
 [Revanced Extended](https://github.com/inotia00)  
-[decipher3114](https://github.com/decipher3114) 
+[decipher3114](https://github.com/decipher3114)
