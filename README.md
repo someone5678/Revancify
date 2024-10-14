@@ -1,5 +1,6 @@
 # Revancify 🛠️
-### A TUI wrapper for Revanced CLI with amazing features.
+
+## A TUI wrapper for Revanced CLI with amazing features.
 
 ## Termux
 
@@ -13,8 +14,8 @@
   </tr>
 </table>
 
+## Features
 
-# Features
 1. Auto updates Patches and CLI
 2. Interactive and Easy to use
 3. Inbuilt scrapper for [ApkMirror](https://apkmirror.com)
@@ -23,32 +24,37 @@
 5. Conserve selected patches
 6. Supports App Version downgrade for devices with Signature Spoof enabled
 7. Convenient Installation and usage
-6. Lightweight and faster than any other tool
+8. Lightweight and faster than any other tool
 
-# Guide
+## Guide
 
 ## Installation
+
 1. Download and Install [Termux](#termux).
 2. Open Termux.
 3. Copy and paste this command.
-```
+
+```bash
 curl -sL "https://raw.githubusercontent.com/someone5678/Revancify/main/install.sh" | bash
 ```
 
 <details>
   <summary>If the above one doesn't work, use this.</summary>
 
-  ```
+  ```bash
 pkg update -y -o Dpkg::Options::="--force-confnew" && pkg install git -y && git clone --depth=1 https://github.com/someone5678/Revancify.git && ./Revancify/revancify
 ```
+
 </details>
 
-## Usage
+### Usage
+
 After installation, type `revancify` in termux and press enter.  
 
 Or use with arguments. Check them with `revancify -h` or `revancify --help`
 
-# Thanks & Credits
+## Thanks & Credits
+
 [Revanced](https://github.com/revanced)
 [Revanced Extended](https://github.com/inotia00)  
-[decipher3114](https://github.com/decipher3114) 
+[decipher3114](https://github.com/decipher3114)
