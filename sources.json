@@ -21,6 +21,28 @@
             }
         }
     },
+    "inotia00": 
+    {
+        "projectName": "Revanced-Extended",
+        "sources": 
+        {
+            "cli":
+            {
+                "org": "inotia00",
+                "repo": "revanced-cli"
+            },
+            "patches":
+            {
+                "org": "inotia00",
+                "repo": "revanced-patches"
+            },
+            "integrations":
+            {
+                "org": "inotia00",
+                "repo": "revanced-integrations"
+            }
+        }
+    },
     "crimera": 
     {
         "projectName": "piko-Twitter",
@@ -62,28 +84,6 @@
             {
                 "org": "YT-Advanced",
                 "repo": "ReX-integrations"
-            }
-        }
-    },
-    "inotia00": 
-    {
-        "projectName": "Revanced-Extended",
-        "sources": 
-        {
-            "cli":
-            {
-                "org": "inotia00",
-                "repo": "revanced-cli"
-            },
-            "patches":
-            {
-                "org": "inotia00",
-                "repo": "revanced-patches"
-            },
-            "integrations":
-            {
-                "org": "inotia00",
-                "repo": "revanced-integrations"
             }
         }
     },
