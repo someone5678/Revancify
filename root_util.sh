@@ -60,6 +60,7 @@ while [ "\$(getprop sys.boot_completed | tr -d '\r')" != "1" ]; do sleep 5; done
 base_path="$revancedApp"
 stock_path="\$(pm path $pkgName | sed -n '/base/s/package://p')"
 am force-stop "$pkgName"
+chmod -v 644 "\$base_path" && chown -v system:system "\$base_path"
 chcon u:object_r:apk_data_file:s0 "\$base_path"
 [ ! -z "\$stock_path" ] && mount -o bind "\$base_path" "\$stock_path"
 am force-stop $pkgName
