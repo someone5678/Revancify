@@ -59,5 +59,5 @@ stock_path="\$(pm path "$PKG_NAME" | sed -n '/base/s/package://p')"
 [ ! -z "\$stock_path" ] && umount -l "\$stock_path"
 grep "$PKG_NAME" /proc/mounts | cut -d " " -f 2 | sed "s/apk.*/apk/" | xargs -r umount -l
 EOF
-chmod 0744 "/data/adb/service.d/mount_revanced_$PKG_NAME.sh"
-chmod 0744 "/data/adb/post-fs-data.d/umount_revanced_$PKG_NAME.sh"
+chmod 0755 "/data/adb/service.d/mount_revanced_$PKG_NAME.sh"
+chmod 0755 "/data/adb/post-fs-data.d/umount_revanced_$PKG_NAME.sh"
