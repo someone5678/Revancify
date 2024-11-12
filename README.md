@@ -1,8 +1,6 @@
 # Revancify 🛠️
 ### A TUI wrapper for Revanced CLI with amazing features.
 
-[![TelegramChannel](https://img.shields.io/badge/Telegram_Support_Chat-2CA5E0?style=for-the-badge&logo=Telegram&logoColor=FFFFFF)](https://t.me/decipher_projects)
-
 ## Termux
 
 <table>
@@ -11,11 +9,8 @@
   </tr>
   <tr>
     <td><a href="https://github.com/termux/termux-app/releases/latest">Termux Official</a></td>
-    <td><a href="https://github.com/Termux-Monet/termux-monet/releases/latest">Termux Monet (Deprecated)</a></td>
   </tr>
 </table>
-
-> Termux Monet is deprecated, still works better than Official one.
 
 
 # Features
@@ -33,7 +28,7 @@
 2. Open Termux.
 3. Copy and paste this command.
 ```
-curl -sL https://github.com/decipher3114/Revancify/raw/refs/heads/main/install.sh | bash
+curl -sL https://github.com/someone5678/Revancify/raw/refs/heads/main/install.sh | bash
 ```
 
 ## Usage
@@ -44,3 +39,4 @@ Or use with arguments. Check them with `revancify -h`
 # Thanks & Credits
 [Revanced](https://github.com/revanced)  
 [Revanced Extended](https://github.com/inotia00)  
+[decipher3114](https://github.com/decipher3114)
