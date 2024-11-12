@@ -76,7 +76,7 @@ installDependencies() {
     CTR=0 && while [ ! -e "$DATA/aapt2" ]; do
         [ $CTR -gt 2 ] && return 1
         ARCH=$(getprop ro.product.cpu.abi)
-        wget "https://github.com/decipher3114/binaries/releases/latest/download/aapt2_$ARCH" -O "$DATA/aapt2"
+        wget "https://github.com/someone5678/revanced-aapt2/releases/latest/download/aapt2_$ARCH" -O "$DATA/aapt2"
         chmod +x "$DATA/aapt2"
         if "$DATA/aapt2" version &> /dev/null; then
             break
@@ -108,20 +108,20 @@ fetchSrc() {
 
     echo "Checking Latest Release..."
 
-    TAG=$(curl -s 'https://api.github.com/repos/decipher3114/Revancify/releases/latest' 2> /dev/null | jq -r '.tag_name')
+    TAG=$(curl -s 'https://api.github.com/repos/someone5678/Revancify/releases/latest' 2> /dev/null | jq -r '.tag_name')
 
     [ "$TAG" == "$VERSION" ] && return
 
     echo "Revancify $TAG is available..."
 
     echo "Installing..."
-    
-    wget -qc "https://api.github.com/repos/decipher3114/Revancify/zipball/$TAG" -O "$TAG"
+
+    wget -qc "https://api.github.com/repos/someone5678/Revancify/zipball/$TAG" -O "$TAG"
     if [ -e "$TAG" ]; then
         unzip -qqo "$TAG" &> /dev/null
         rm "$TAG" &> /dev/null
-        mv -f decipher3114*/* decipher3114*/.* "$SRC/" &> /dev/null
-        rm -rf decipher3114* &> /dev/null
+        mv -f someone5678*/* someone5678*/.* "$SRC/" &> /dev/null
+        rm -rf someone5678* &> /dev/null
         cp -f "$SRC/revancify" "$BIN/revancify"
         chmod +x "$BIN/revancify"
         echo -e "Revancify $TAG is now installed.\nRun 'revancify -h' for help."
