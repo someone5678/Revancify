@@ -11,7 +11,10 @@
     {
         "source": "ReVanced-Extended",
         "repository": "inotia00/revanced-patches",
-        "api": null,
+        "api": {
+            "json": "",
+            "version": ""
+        },
         "cli": "inotia00/revanced-cli"
     }
 ]
