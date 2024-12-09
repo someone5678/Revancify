@@ -12,7 +12,23 @@ fetchAssetsInfo() {
     
         notify info "Fetching Assets Info..."
 
-        if ! source <("${CURL[@]}" "https://api.github.com/repos/ReVanced/revanced-cli/releases" | jq -r '
+        [ -z "$SOURCE" ] && SOURCE="ReVanced"
+
+        source <(jq -r --arg SOURCE "$SOURCE" '
+            .[] | select(.source == $SOURCE) |
+            "REPO=\(.repository)",
+            (
+                .api // empty |
+                (
+                    (.json // empty | "JSON_URL=\(.)"),
+                    (.version // empty | "VERSION_URL=\(.)")
+                )
+            ),
+            "CLI_REPO=\(.cli)"
+            ' "$SRC/sources.json"
+        )
+
+        if ! source <("${CURL[@]}" "https://api.github.com/repos/$CLI_REPO/releases" | jq -r '
                 if type == "array" then .[0] else . end |
                 "CLI_VERSION="+.tag_name,
                 (
@@ -28,22 +44,6 @@ fetchAssetsInfo() {
         ); then
             notify msg "Unable to fetch latest CLI info from API!!\n Retry later."
         fi
-
-
-        [ -z "$SOURCE" ] && SOURCE="ReVanced"
-        
-        source <(jq -r --arg SOURCE "$SOURCE" '
-            .[] | select(.source == $SOURCE) |
-            "REPO=\(.repository)",
-            (
-                .api // empty |
-                (
-                    (.json // empty | "JSON_URL=\(.)"),
-                    (.version // empty | "VERSION_URL=\(.)")
-                )
-            )
-            ' "$SRC/sources.json"
-        )
 
         if [ -n "$VERSION_URL" ] && VERSION=$("${CURL[@]}" "$VERSION_URL" | jq -r '.version' 2> /dev/null); then
             PATCHES_API_URL="https://api.github.com/repos/$REPO/releases/tags/$VERSION"
