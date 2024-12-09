@@ -3,6 +3,15 @@
 SRC=$(dirname "$0")
 ROOT_ACCESS="$1"
 
+initConfig() {
+    setEnv LIGHT_THEME "off" init .config
+    setEnv PREFER_SPLIT_APK "on" init .config
+    setEnv LAUNCH_APP_AFTER_MOUNT "on" init .config
+    setEnv ALLOW_APP_VERSION_DOWNGRADE "off" init .config
+    setEnv SOURCE "ReVanced" init .config
+    source .config
+}
+
 main() {
 
     mkdir -p "$STORAGE" "$STORAGE/Patched" "$STORAGE/Stock"
@@ -13,8 +22,14 @@ main() {
     [ "$LIGHT_THEME" == "on" ] && THEME="LIGHT" || THEME="DARK"
     export DIALOGRC="$SRC/config/.DIALOGRC_$THEME"
 
-    if [ -e .assets ]; then
-        source .assets
+    if [ -e $SRC/data/.config ]; then
+        source $SRC/data/.config
+    else
+        initConfig
+    fi
+
+    if [ -e $SRC/data/$SOURCE.assets ]; then
+        source $SRC/data/$SOURCE.assets
     else
         fetchAssetsInfo
     fi
@@ -58,13 +73,7 @@ for MODULE in $(find "$SRC/modules" -type f -name "*.sh"); do
     source "$MODULE"
 done
 
-setEnv LIGHT_THEME "off" init .config
-setEnv PREFER_SPLIT_APK "on" init .config
-setEnv LAUNCH_APP_AFTER_MOUNT "on" init .config
-setEnv ALLOW_APP_VERSION_DOWNGRADE "off" init .config
-setEnv SOURCE "ReVanced" init .config
-source .config
-
+initConfig
 trap terminate SIGTERM SIGINT SIGABRT
 main
 terminate "$?"
