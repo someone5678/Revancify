@@ -45,10 +45,16 @@ fetchAssetsInfo() {
             notify msg "Unable to fetch latest CLI info from API!!\n Retry later."
         fi
 
-        if [ -n "$VERSION_URL" ] && VERSION=$("${CURL[@]}" "$VERSION_URL" | jq -r '.version' 2> /dev/null); then
+        if [ -z $VERSION_URL ]; then
+            PATCHES_API_URL="https://api.github.com/repos/$REPO/releases/latest"
+        elif [ -n "$VERSION_URL" ] && VERSION=$("${CURL[@]}" "$VERSION_URL" | jq -r '.version' 2> /dev/null); then
             PATCHES_API_URL="https://api.github.com/repos/$REPO/releases/tags/$VERSION"
         else
             PATCHES_API_URL="https://api.github.com/repos/$REPO/releases/latest"
+        fi
+
+        if [ -z $JSON_URL ]; then
+            JSON_URL=""
         fi
 
         if ! source <("${CURL[@]}" "$PATCHES_API_URL" | jq -r '
