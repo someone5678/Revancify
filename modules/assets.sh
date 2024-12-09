@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 
 fetchAssetsInfo() {
-    unset CLI_VERSION CLI_FILE_URL CLI_FILE_SIZE PATCHES_VERSION PATCHES_FILE_URL PATCHES_FILE_SIZE JSON_URL
+    unset CLI_STABLE CLI_VERSION CLI_FILE_URL CLI_FILE_SIZE PATCHES_STABLE PATCHES_VERSION PATCHES_FILE_URL PATCHES_FILE_SIZE JSON_URL
     local SOURCE_INFO VERSION PATCHES_API_URL
 
     source .config
@@ -28,7 +28,8 @@ fetchAssetsInfo() {
             ' "$SRC/sources.json"
         )
 
-        if ! source <("${CURL[@]}" "https://api.github.com/repos/$CLI_REPO/releases" | jq -r '
+        [ "$FETCH_PRE_RELEASE" == "off" ] && CLI_STABLE="/latest" || CLI_STABLE=""
+        if ! source <("${CURL[@]}" "https://api.github.com/repos/$CLI_REPO/releases$CLI_STABLE" | jq -r '
                 if type == "array" then .[0] else . end |
                 "CLI_VERSION="+.tag_name,
                 (
@@ -46,11 +47,14 @@ fetchAssetsInfo() {
         fi
 
         if [ -z $VERSION_URL ]; then
-            PATCHES_API_URL="https://api.github.com/repos/$REPO/releases/latest"
+            [ "$FETCH_PRE_RELEASE" == "off" ] && PATCHES_STABLE="/latest" || PATCHES_STABLE=""
+            PATCHES_API_URL="https://api.github.com/repos/$REPO/releases$PATCHES_STABLE"
         elif [ -n "$VERSION_URL" ] && VERSION=$("${CURL[@]}" "$VERSION_URL" | jq -r '.version' 2> /dev/null); then
-            PATCHES_API_URL="https://api.github.com/repos/$REPO/releases/tags/$VERSION"
+            [ "$FETCH_PRE_RELEASE" == "off" ] && PATCHES_STABLE="/tags/$VERSION" || PATCHES_STABLE=""
+            PATCHES_API_URL="https://api.github.com/repos/$REPO/releases$PATCHES_STABLE"
         else
-            PATCHES_API_URL="https://api.github.com/repos/$REPO/releases/latest"
+            [ "$FETCH_PRE_RELEASE" == "off" ] && PATCHES_STABLE="/latest" || PATCHES_STABLE=""
+            PATCHES_API_URL="https://api.github.com/repos/$REPO/releases$PATCHES_STABLE"
         fi
 
         if [ -z $JSON_URL ]; then

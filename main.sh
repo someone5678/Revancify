@@ -8,6 +8,7 @@ initConfig() {
     setEnv PREFER_SPLIT_APK "on" init .config
     setEnv LAUNCH_APP_AFTER_MOUNT "on" init .config
     setEnv ALLOW_APP_VERSION_DOWNGRADE "off" init .config
+    setEnv FETCH_PRE_RELEASE "off" init .config
     setEnv SOURCE "ReVanced" init .config
     source .config
 }
