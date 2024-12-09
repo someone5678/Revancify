@@ -2,6 +2,8 @@
 
 changeSource() {
     local SELECTED_SOURCE
+    local SOURCES
+    source .config
     [ -n "$SOURCES" ] || readarray -t SOURCES < <(jq -r --arg SOURCE "$SOURCE" '.[] | .source | ., if . == $SOURCE then "on" else "off" end' "$SRC"/sources.json)
     SELECTED_SOURCE=$("${DIALOG[@]}" \
         --title '| Source Selection Menu |' \
@@ -14,6 +16,8 @@ changeSource() {
 
     [ "$SOURCE" == "$SELECTED_SOURCE" ] && return
     SOURCE="$SELECTED_SOURCE"
+    setEnv SOURCE "$SOURCE" update .config
+    source .config
     unset AVAILABLE_PATCHES APPS_INFO APPS_LIST AVAILABLE_PATCHES
     fetchAssetsInfo || return 1
 }

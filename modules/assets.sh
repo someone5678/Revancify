@@ -4,6 +4,8 @@ fetchAssetsInfo() {
     unset CLI_VERSION CLI_FILE_URL CLI_FILE_SIZE PATCHES_VERSION PATCHES_FILE_URL PATCHES_FILE_SIZE JSON_URL
     local SOURCE_INFO VERSION PATCHES_API_URL
 
+    source .config
+
     internet || return 1
     
     if [ "$("${CURL[@]}" "https://api.github.com/rate_limit" | jq -r '.resources.core.remaining')" -gt 5 ]; then
@@ -11,8 +13,6 @@ fetchAssetsInfo() {
         rm "$SOURCE".assets 2> /dev/null
     
         notify info "Fetching Assets Info..."
-
-        [ -z "$SOURCE" ] && SOURCE="ReVanced"
 
         source <(jq -r --arg SOURCE "$SOURCE" '
             .[] | select(.source == $SOURCE) |
