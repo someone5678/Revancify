@@ -5,7 +5,8 @@
         "api": {
             "json": "https://api.revanced.app/v4/patches/list",
             "version": "https://api.revanced.app/v4/patches/version"
-        }
+        },
+        "cli": "ReVanced/revanced-cli"
     },
     {
         "source": "ReVanced-Extended",
@@ -13,7 +14,8 @@
         "api": {
             "json": "https://raw.githubusercontent.com/inotia00/revanced-patches/refs/heads/revanced-extended/patches.json",
             "version": null
-        }
+        },
+        "cli": "inotia00/revanced-cli"
     },
     {
         "source": "Anddea",
@@ -21,7 +23,8 @@
         "api": {
             "json": "https://raw.githubusercontent.com/anddea/revanced-patches/refs/heads/main/patches.json",
             "version": null
-        }
+        },
+        "cli": "inotia00/revanced-cli"
     },
     {
         "source": "RVX-Android-6-7",
@@ -29,6 +32,7 @@
         "api": {
             "json": "https://raw.githubusercontent.com/kitadai31/revanced-patches-android6-7/refs/heads/revanced-extended/patches.json",
             "version": null
-        }
+        },
+        "cli": "inotia00/revanced-cli"
     }
 ]
