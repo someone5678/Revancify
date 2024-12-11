@@ -5,7 +5,8 @@
         "api": {
             "json": "https://api.revanced.app/v4/patches/list",
             "version": "https://api.revanced.app/v4/patches/version"
-        }
+        },
+        "cli": "ReVanced/revanced-cli"
     },
     {
         "source": "ReVanced-Extended",
@@ -13,6 +14,7 @@
         "api": {
             "json": "https://raw.githubusercontent.com/inotia00/revanced-patches/refs/heads/revanced-extended/patches.json",
             "version": null
-        }
+        },
+        "cli": "inotia00/revanced-cli"
     }
 ]
