@@ -122,9 +122,9 @@ fetchSrc() {
 
     ping -c 1 google.com &> /dev/null || return
 
-    if [ ! -d Revancify ]; then
+    if [ ! -d $HOME/Revancify ]; then
         echo "Installing Revancify..."
-        if ! git clone https://github.com/someone5678/Revancify.git; then
+        if ! git clone https://github.com/someone5678/Revancify.git $HOME/Revancify; then
             echo -e "Unable to install Revancify !!\nPlease try again with proper Internet"
             exit 1
         fi
@@ -133,7 +133,7 @@ fetchSrc() {
         exit
     else
         echo "Checking update..."
-        cd Revancify
+        cd $HOME/Revancify
         if ! git fetch origin; then
             echo -e "Unable to update Revancify !!\nPlease try again with proper Internet"
             cd
