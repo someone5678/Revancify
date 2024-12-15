@@ -26,19 +26,19 @@ Fork of https://github.com/decipher3114/Revancify
 1. Open Termux.  
 2. Copy and paste this command.  
 ```
-curl -sL "https://raw.githubusercontent.com/someone5678/Revancify/main/install.sh" | bash
+curl -sL "https://raw.githubusercontent.com/someone5678/Revancify/legacy/install.sh" | bash
 ```
 
 <details>
   <summary>If the above one doesn't work, use this.</summary>
 
   ```
-pkg update -y -o Dpkg::Options::="--force-confnew" && pkg install git -y && git clone --depth=1 https://github.com/someone5678/Revancify.git && ./Revancify/revancify
+pkg update -y -o Dpkg::Options::="--force-confnew" && pkg install git -y && git clone --depth=1 https://github.com/someone5678/Revancify.git -b legacy Revancify-legacy && ./Revancify-legacy/revancify
 ```
 </details>
 
 ## Usage
-After installation, type `revancify` in termux and press enter.  
+After installation, type `revancify-legacy` in termux and press enter.  
 
 Or use with arguments. Check them with `revancify -h` or `revancify --help`
 

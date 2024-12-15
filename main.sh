@@ -24,11 +24,11 @@ setEnv() {
 
 initialize() {
     : "${internalStorage:=/storage/emulated/0}"
-    storagePath="$internalStorage/Revancify"
+    storagePath="$internalStorage/Revancify-legacy"
     [ ! -d "$storagePath" ] && mkdir -p "$storagePath"
     [ ! -d apps ] && mkdir -p apps
     arch=$(getprop ro.product.cpu.abi)
-    repoDir="$HOME/Revancify"
+    repoDir="$HOME/Revancify-legacy"
     header=(dialog --backtitle "Revancify | [Arch: $arch, Root: $root]" --no-shadow)
     envFile=config.cfg
     [ ! -f "apps/.appSize" ] && : > "apps/.appSize"
@@ -318,7 +318,7 @@ initInstall() {
     then
         "${header[@]}" --infobox "Please Wait !!\nInstalling Patched $appName..." 12 45
         if ! su -mm -c "/system/bin/sh $repoDir/root_util.sh mount $pkgName $appName $appVer $sourceName" > /dev/null 2>&1; then
-            "${header[@]}" --msgbox "Installation Failed !!\nLogs saved to \"Internal-Storage/Revancify/install_log.txt\". Share the Install logs to developer." 12 45
+            "${header[@]}" --msgbox "Installation Failed !!\nLogs saved to \"Internal-Storage/Revancify-legacy/install_log.txt\". Share the Install logs to developer." 12 45
             return 1
         else
             "${header[@]}" --msgbox "$appName installed Successfully !!" 12 45

@@ -47,7 +47,7 @@ am force-stop "$pkgName"
     chmod -v 644 "$revancedApp" && chown -v system:system "$revancedApp"
     chcon -v u:object_r:apk_data_file:s0 "$revancedApp"
     mount -vo bind "$revancedApp" "$stockApp"
-} > /storage/emulated/0/Revancify/install_log.txt 2>&1
+} > /storage/emulated/0/Revancify-legacy/install_log.txt 2>&1
 
 am force-stop "$pkgName"
 
