@@ -61,6 +61,8 @@ installDependencies() {
     [ -e "$HOME/storage" ] || termux-setup-storage
 
     BINS=$(ls "$PREFIX/bin")
+    grep -q git <<< "$BINS" || PKGS+=("git")
+    grep -q ssh <<< "$BINS" || PKGS+=("openssh")
     grep -q java <<< "$BINS" || PKGS+=("openjdk-21")
     grep -q wget <<< "$BINS" || PKGS+=("wget")
     grep -q tput <<< "$BINS" || PKGS+=("ncurses-utils")
